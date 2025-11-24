@@ -1,0 +1,22 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "ThingsBoard konfigurieren",
+        "description": "Geben Sie Ihre ThingsBoard-Verbindungsdaten ein. Das Zugriffstoken ist Ihr Gerätezugriffstoken von ThingsBoard.",
+        "data": {
+          "host": "ThingsBoard Host-URL",
+          "access_token": "Gerätezugriffstoken"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Verbindung zu ThingsBoard fehlgeschlagen. Bitte überprüfen Sie Ihre Host-URL und Netzwerkverbindung.",
+      "invalid_auth": "Ungültiges Zugriffstoken. Bitte überprüfen Sie Ihre Geräteanmeldedaten in ThingsBoard.",
+      "unknown": "Unerwarteter Fehler aufgetreten. Bitte überprüfen Sie die Logs für weitere Informationen."
+    },
+    "abort": {
+      "already_configured": "Dieses ThingsBoard-Gerät ist bereits konfiguriert."
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Configure ThingsBoard",
+        "description": "Enter your ThingsBoard connection details. The access token is your device access token from ThingsBoard.",
+        "data": {
+          "host": "ThingsBoard Host URL",
+          "access_token": "Device Access Token"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Failed to connect to ThingsBoard. Please check your host URL and network connection.",
+      "invalid_auth": "Invalid access token. Please check your device credentials in ThingsBoard.",
+      "unknown": "Unexpected error occurred. Please check the logs for more information."
+    },
+    "abort": {
+      "already_configured": "This ThingsBoard device is already configured."
+    }
+  }
+}
