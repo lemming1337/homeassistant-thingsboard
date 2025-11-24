@@ -1,5 +1,9 @@
 # ThingsBoard Integration für Home Assistant
 
+[![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/hacs/integration)
+[![GitHub Release](https://img.shields.io/github/release/lemming1337/homeassistant-thingsboard.svg)](https://github.com/lemming1337/homeassistant-thingsboard/releases)
+[![License](https://img.shields.io/github/license/lemming1337/homeassistant-thingsboard.svg)](LICENSE)
+
 Eine vollständige Home Assistant Custom Component Integration für [ThingsBoard](https://thingsboard.io/), die die HTTP API verwendet.
 
 ## Features

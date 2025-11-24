@@ -1,0 +1,9 @@
+{
+  "name": "ThingsBoard",
+  "content_in_root": false,
+  "filename": "thingsboard",
+  "render_readme": true,
+  "domains": ["thingsboard"],
+  "homeassistant": "2024.1.0",
+  "iot_class": "Cloud Polling"
+}
