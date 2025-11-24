@@ -1,4 +1,5 @@
 """Sensor platform for ThingsBoard integration."""
+
 from __future__ import annotations
 
 import logging
@@ -39,8 +40,7 @@ async def async_setup_entry(
                 # Skip if entity already exists
                 entity_id = f"sensor.thingsboard_{key}"
                 if entity_id not in [
-                    entity.entity_id
-                    for entity in hass.data[DOMAIN].get("entities", [])
+                    entity.entity_id for entity in hass.data[DOMAIN].get("entities", [])
                 ]:
                     entities.append(
                         ThingsBoardSensor(
@@ -62,9 +62,7 @@ async def async_setup_entry(
     async_add_sensors()
 
     # Listen for coordinator updates to add new entities
-    entry.async_on_unload(
-        coordinator.async_add_listener(async_add_sensors)
-    )
+    entry.async_on_unload(coordinator.async_add_listener(async_add_sensors))
 
 
 class ThingsBoardSensor(CoordinatorEntity, SensorEntity):

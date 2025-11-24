@@ -1,7 +1,7 @@
 """DataUpdateCoordinator for ThingsBoard."""
+
 from __future__ import annotations
 
-from datetime import timedelta
 import logging
 from typing import Any
 
@@ -51,9 +51,7 @@ class ThingsBoardDataUpdateCoordinator(DataUpdateCoordinator):
                 if response.status == 401:
                     raise UpdateFailed("Invalid access token")
                 elif response.status != 200:
-                    raise UpdateFailed(
-                        f"Error fetching data: HTTP {response.status}"
-                    )
+                    raise UpdateFailed(f"Error fetching data: HTTP {response.status}")
 
                 data = await response.json()
 
@@ -109,9 +107,7 @@ class ThingsBoardDataUpdateCoordinator(DataUpdateCoordinator):
                     _LOGGER.error("Invalid access token when setting attributes")
                     return False
                 elif response.status not in (200, 201):
-                    _LOGGER.error(
-                        "Error setting attributes: HTTP %s", response.status
-                    )
+                    _LOGGER.error("Error setting attributes: HTTP %s", response.status)
                     return False
 
                 _LOGGER.info("Successfully set attributes: %s", attributes)

@@ -1,4 +1,5 @@
 """Number platform for ThingsBoard integration."""
+
 from __future__ import annotations
 
 import logging

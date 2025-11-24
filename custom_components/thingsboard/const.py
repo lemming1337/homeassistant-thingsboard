@@ -1,4 +1,5 @@
 """Constants for the ThingsBoard integration."""
+
 from datetime import timedelta
 
 DOMAIN = "thingsboard"
@@ -14,7 +15,9 @@ DEFAULT_NAME = "ThingsBoard"
 # API Endpoints
 API_TELEMETRY = "/api/v1/{token}/telemetry"
 API_ATTRIBUTES = "/api/v1/{token}/attributes"
-API_ATTRIBUTES_REQUEST = "/api/v1/{token}/attributes?clientKeys={client_keys}&sharedKeys={shared_keys}"
+API_ATTRIBUTES_REQUEST = (
+    "/api/v1/{token}/attributes?clientKeys={client_keys}&sharedKeys={shared_keys}"
+)
 
 # Attributes
 ATTR_LAST_UPDATE = "last_update"

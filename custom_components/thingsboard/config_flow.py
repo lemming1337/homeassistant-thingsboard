@@ -1,4 +1,5 @@
 """Config flow for ThingsBoard integration."""
+
 from __future__ import annotations
 
 import logging
@@ -42,7 +43,9 @@ async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> dict[str,
     session = async_get_clientsession(hass)
 
     try:
-        async with session.get(url, timeout=aiohttp.ClientTimeout(total=10)) as response:
+        async with session.get(
+            url, timeout=aiohttp.ClientTimeout(total=10)
+        ) as response:
             if response.status == 401:
                 raise InvalidAuth
             elif response.status == 404:
