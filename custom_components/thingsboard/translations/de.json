@@ -18,5 +18,39 @@
     "abort": {
       "already_configured": "Dieses ThingsBoard-Gerät ist bereits konfiguriert."
     }
+  },
+  "services": {
+    "set_attribute": {
+      "name": "Attribut setzen",
+      "description": "Setzt ein einzelnes Attribut auf dem ThingsBoard-Gerät",
+      "fields": {
+        "config_entry_id": {
+          "name": "Konfigurations-Eintrags-ID",
+          "description": "Die Konfigurations-Eintrags-ID für das ThingsBoard-Gerät"
+        },
+        "attribute_key": {
+          "name": "Attribut-Schlüssel",
+          "description": "Der Name des zu setzenden Attributs"
+        },
+        "value": {
+          "name": "Wert",
+          "description": "Der zu setzende Wert (kann String, Zahl oder Boolean sein)"
+        }
+      }
+    },
+    "set_attributes": {
+      "name": "Mehrere Attribute setzen",
+      "description": "Setzt mehrere Attribute auf dem ThingsBoard-Gerät gleichzeitig",
+      "fields": {
+        "config_entry_id": {
+          "name": "Konfigurations-Eintrags-ID",
+          "description": "Die Konfigurations-Eintrags-ID für das ThingsBoard-Gerät"
+        },
+        "attributes": {
+          "name": "Attribute",
+          "description": "Dictionary mit zu setzenden Attributen"
+        }
+      }
+    }
   }
 }

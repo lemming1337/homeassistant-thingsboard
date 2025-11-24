@@ -1,0 +1,46 @@
+# Service definitions for ThingsBoard integration
+
+set_attribute:
+  name: Set Attribute
+  description: Set a single attribute on the ThingsBoard device
+  fields:
+    config_entry_id:
+      name: Config Entry
+      description: The config entry ID for the ThingsBoard device
+      required: true
+      example: "01234567890abcdef"
+      selector:
+        text:
+    attribute_key:
+      name: Attribute Key
+      description: The name of the attribute to set
+      required: true
+      example: "targetTemperature"
+      selector:
+        text:
+    value:
+      name: Value
+      description: The value to set (can be string, number, or boolean)
+      required: true
+      example: "22.5"
+      selector:
+        text:
+
+set_attributes:
+  name: Set Multiple Attributes
+  description: Set multiple attributes on the ThingsBoard device at once
+  fields:
+    config_entry_id:
+      name: Config Entry
+      description: The config entry ID for the ThingsBoard device
+      required: true
+      example: "01234567890abcdef"
+      selector:
+        text:
+    attributes:
+      name: Attributes
+      description: JSON object with attributes to set
+      required: true
+      example: '{"targetTemperature": 22.5, "mode": "auto"}'
+      selector:
+        object:

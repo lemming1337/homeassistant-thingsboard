@@ -10,6 +10,8 @@ Eine vollständige Home Assistant Custom Component Integration für [ThingsBoard
 - ✅ **UI-Konfiguration**: Einfache Einrichtung über die Home Assistant UI
 - ✅ **Mehrsprachig**: Unterstützt Deutsch und Englisch
 - ✅ **Sensor-Entities**: Erstellt automatisch Sensoren für alle entdeckten Attribute
+- ✅ **Gerätesteuerung**: Setzen von SharedAttributes über Services und Number-Entities
+- ✅ **Number-Entities**: Numerische SharedAttributes werden automatisch als steuerbare Number-Entities erstellt
 
 ## Installation
 
@@ -98,6 +100,77 @@ Dann werden folgende Sensoren erstellt:
 - `sensor.thingsboard_shared_targettemperature`
 - `sensor.thingsboard_shared_mode`
 
+Zusätzlich wird für numerische SharedAttributes eine Number-Entity erstellt:
+- `number.thingsboard_targettemperature` (steuerbar!)
+
+## Gerätesteuerung
+
+Die Integration ermöglicht die Steuerung von ThingsBoard-Geräten durch Setzen von SharedAttributes.
+
+### Number-Entities (UI-Steuerung)
+
+Numerische SharedAttributes werden automatisch als **Number-Entities** erstellt, die direkt in der Home Assistant UI gesteuert werden können:
+
+1. Gehen Sie zu **Einstellungen** → **Geräte & Dienste** → **ThingsBoard**
+2. Klicken Sie auf Ihr Gerät
+3. Sie sehen alle Number-Entities mit Eingabefeldern
+4. Ändern Sie den Wert direkt in der UI
+
+**Beispiel:**
+- SharedAttribute `targetTemperature: 22.0` → `number.thingsboard_targettemperature`
+- Wert ändern → Wird sofort an ThingsBoard gesendet
+
+### Services für erweiterte Steuerung
+
+Für komplexere Szenarien oder Automatisierungen stehen zwei Services zur Verfügung:
+
+#### 1. `thingsboard.set_attribute` - Einzelnes Attribut setzen
+
+```yaml
+service: thingsboard.set_attribute
+data:
+  config_entry_id: "01234567890abcdef"
+  attribute_key: "targetTemperature"
+  value: 22.5
+```
+
+#### 2. `thingsboard.set_attributes` - Mehrere Attribute gleichzeitig
+
+```yaml
+service: thingsboard.set_attributes
+data:
+  config_entry_id: "01234567890abcdef"
+  attributes:
+    targetTemperature: 22.5
+    mode: "auto"
+    enabled: true
+```
+
+### Config Entry ID finden
+
+Um die `config_entry_id` zu finden:
+
+1. Gehen Sie zu **Einstellungen** → **Geräte & Dienste**
+2. Klicken Sie auf **ThingsBoard**
+3. Klicken Sie auf die drei Punkte (⋮) bei Ihrer Integration
+4. Die ID ist in der URL sichtbar: `.../config/config_entries/entry/[CONFIG_ENTRY_ID]`
+
+### Beispiel-Automatisierung
+
+```yaml
+automation:
+  - alias: "Temperatur bei Sonnenuntergang erhöhen"
+    trigger:
+      - platform: sun
+        event: sunset
+    action:
+      - service: thingsboard.set_attribute
+        data:
+          config_entry_id: "YOUR_CONFIG_ENTRY_ID"
+          attribute_key: "targetTemperature"
+          value: 23.0
+```
+
 ## Technische Details
 
 ### API-Endpunkte
@@ -105,6 +178,7 @@ Dann werden folgende Sensoren erstellt:
 Die Integration verwendet folgende ThingsBoard HTTP API Endpunkte:
 
 - **GET** `/api/v1/{token}/attributes` - Abrufen aller Attribute (client & shared)
+- **POST** `/api/v1/{token}/attributes` - Setzen von Attributen (für Gerätesteuerung)
 
 ### Update-Intervall
 

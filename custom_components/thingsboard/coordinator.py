@@ -87,3 +87,41 @@ class ThingsBoardDataUpdateCoordinator(DataUpdateCoordinator):
             raise UpdateFailed(f"Error communicating with API: {err}") from err
         except Exception as err:
             raise UpdateFailed(f"Unexpected error: {err}") from err
+
+    async def async_set_shared_attributes(self, attributes: dict[str, Any]) -> bool:
+        """Set shared attributes on ThingsBoard device.
+
+        Args:
+            attributes: Dictionary of attributes to set (e.g., {"temperature": 22.5})
+
+        Returns:
+            True if successful, False otherwise
+        """
+        try:
+            url = f"{self.host}/api/v1/{self.token}/attributes"
+
+            async with self.session.post(
+                url,
+                json=attributes,
+                timeout=aiohttp.ClientTimeout(total=10),
+            ) as response:
+                if response.status == 401:
+                    _LOGGER.error("Invalid access token when setting attributes")
+                    return False
+                elif response.status not in (200, 201):
+                    _LOGGER.error(
+                        "Error setting attributes: HTTP %s", response.status
+                    )
+                    return False
+
+                _LOGGER.info("Successfully set attributes: %s", attributes)
+                # Trigger an immediate refresh to update the entities
+                await self.async_request_refresh()
+                return True
+
+        except aiohttp.ClientError as err:
+            _LOGGER.error("Error communicating with API: %s", err)
+            return False
+        except Exception as err:
+            _LOGGER.exception("Unexpected error setting attributes: %s", err)
+            return False
