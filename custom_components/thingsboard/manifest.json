@@ -1,0 +1,11 @@
+{
+  "domain": "thingsboard",
+  "name": "ThingsBoard",
+  "codeowners": ["@lemming1337"],
+  "config_flow": true,
+  "documentation": "https://github.com/lemming1337/homeassistant-thingsboard",
+  "integration_type": "hub",
+  "iot_class": "cloud_polling",
+  "requirements": ["aiohttp>=3.8.0"],
+  "version": "1.0.0"
+}

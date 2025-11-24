@@ -1,0 +1,56 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Configure ThingsBoard",
+        "description": "Enter your ThingsBoard connection details. The access token is your device access token from ThingsBoard.",
+        "data": {
+          "host": "ThingsBoard Host URL",
+          "access_token": "Device Access Token"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Failed to connect to ThingsBoard. Please check your host URL and network connection.",
+      "invalid_auth": "Invalid access token. Please check your device credentials in ThingsBoard.",
+      "unknown": "Unexpected error occurred. Please check the logs for more information."
+    },
+    "abort": {
+      "already_configured": "This ThingsBoard device is already configured."
+    }
+  },
+  "services": {
+    "set_attribute": {
+      "name": "Set Attribute",
+      "description": "Set a single attribute on the ThingsBoard device",
+      "fields": {
+        "config_entry_id": {
+          "name": "Config Entry ID",
+          "description": "The config entry ID for the ThingsBoard device"
+        },
+        "attribute_key": {
+          "name": "Attribute Key",
+          "description": "The name of the attribute to set"
+        },
+        "value": {
+          "name": "Value",
+          "description": "The value to set (can be string, number, or boolean)"
+        }
+      }
+    },
+    "set_attributes": {
+      "name": "Set Multiple Attributes",
+      "description": "Set multiple attributes on the ThingsBoard device at once",
+      "fields": {
+        "config_entry_id": {
+          "name": "Config Entry ID",
+          "description": "The config entry ID for the ThingsBoard device"
+        },
+        "attributes": {
+          "name": "Attributes",
+          "description": "Dictionary with attributes to set"
+        }
+      }
+    }
+  }
+}
