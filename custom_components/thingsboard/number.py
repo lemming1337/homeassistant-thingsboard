@@ -143,5 +143,4 @@ class ThingsBoardNumber(CoordinatorEntity, NumberEntity):
         """Return extra attributes."""
         return {
             "attribute_key": self._attribute_key,
-            "last_update": self.coordinator.last_update_success_time,
         }
